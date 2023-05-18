@@ -2,7 +2,31 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.0.0"
+      version = "~> 3.56.0"
+    }
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.15.0"
+    }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.4.0"
+    }
+    time = {
+      source  = "hashicorp/time"
+      version = "~> 0.9.1"
+    }
+    acme = {
+      source  = "vancluever/acme"
+      version = "~> 2.0"
+    }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0.4"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.5.1"
     }
   }
   backend "azurerm" {
@@ -16,4 +40,18 @@ terraform {
 provider "azurerm" {
   features {}
   subscription_id = "ad3a592d-2f32-4013-8b6a-a290a0aafed2"
+}
+
+provider "azurerm" {
+  features {}
+  alias           = "dns"
+  subscription_id = "646dcda3-7645-475b-8dc3-be6257586e68"
+}
+
+provider "azuread" {
+  tenant_id = data.azurerm_client_config.current.tenant_id
+}
+
+provider "acme" {
+  server_url = "https://acme-staging-v02.api.letsencrypt.org/directory"
 }
