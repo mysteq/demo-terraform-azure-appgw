@@ -320,11 +320,11 @@ resource "azurerm_key_vault_access_policy" "example2" {
   object_id    = data.azurerm_client_config.current.object_id
 
   certificate_permissions = [
-    "Get", "List", "Create", "Import", "Update", "Delete", "Recover", "Backup", "Restore", "Recover"
+    "Get", "List", "Create", "Import", "Update", "Delete", "Backup", "Restore", "Recover"
   ]
 
   secret_permissions = [
-    "Get", "List", "Create", "Import", "Update", "Delete", "Recover", "Backup", "Restore", "Recover"
+    "Get", "List", "Set", "Purge", "Delete", "Backup", "Restore", "Recover"
   ]
 }
 
